@@ -30,7 +30,7 @@ class _NavigationPageState extends State<NavigationPage> {
                     fit: BoxFit.fitHeight, 
                     ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10),
                     child: Text(
                       'Profile', style: TextStyle( 
                         color: Colors.black, fontSize: 17.5, 
@@ -40,7 +40,7 @@ class _NavigationPageState extends State<NavigationPage> {
                 ],
               ),
           ),
-          
+
         ],
       ),
     );
