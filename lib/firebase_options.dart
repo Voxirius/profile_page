@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -44,40 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAmuKqXXPuP8S7hmHpGKex8F4S6O20tS3Y',
-    appId: '1:1078181417282:web:94c28296e0ca92c71d78db',
-    messagingSenderId: '1078181417282',
-    projectId: 'profilepage-project',
-    authDomain: 'profilepage-project.firebaseapp.com',
-    storageBucket: 'profilepage-project.appspot.com',
-    measurementId: 'G-SB1CC8ZKH8',
+    apiKey: 'AIzaSyAavpVbEdmMoqFWfZDDkNIsC61_wGS12cg',
+    appId: '1:652896473499:web:c232913bee09239cb5d13e',
+    messagingSenderId: '652896473499',
+    projectId: 'profilepage-project-2cd0f',
+    authDomain: 'profilepage-project-2cd0f.firebaseapp.com',
+    storageBucket: 'profilepage-project-2cd0f.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBmuTmOOE1UMTqD-_Opqqtj-vZaChzwxuQ',
-    appId: '1:1078181417282:android:b9a796c55f4a09051d78db',
-    messagingSenderId: '1078181417282',
-    projectId: 'profilepage-project',
-    storageBucket: 'profilepage-project.appspot.com',
+    apiKey: 'AIzaSyBUzr4zbM0beCtGzpZI6UcS1KhYOB-r1g0',
+    appId: '1:652896473499:android:a7c7553b0ed13673b5d13e',
+    messagingSenderId: '652896473499',
+    projectId: 'profilepage-project-2cd0f',
+    storageBucket: 'profilepage-project-2cd0f.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCRuMjuofxA36FRpSNnCPmcdkMvXNRtQ0k',
-    appId: '1:1078181417282:ios:430712bc2f60c28c1d78db',
-    messagingSenderId: '1078181417282',
-    projectId: 'profilepage-project',
-    storageBucket: 'profilepage-project.appspot.com',
-    iosClientId: '1078181417282-pbt8sbhgi8bbd1p47ndgmgpe3bi9hbbo.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDznZiW2gWAVnOStmBUcyo63yG8U0mhgrc',
+    appId: '1:652896473499:ios:2cc98972cde6539db5d13e',
+    messagingSenderId: '652896473499',
+    projectId: 'profilepage-project-2cd0f',
+    storageBucket: 'profilepage-project-2cd0f.appspot.com',
+    iosClientId: '652896473499-51556fvrj3b41lcog3qvcfibtkh9loqn.apps.googleusercontent.com',
     iosBundleId: 'com.example.profilePage',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCRuMjuofxA36FRpSNnCPmcdkMvXNRtQ0k',
-    appId: '1:1078181417282:ios:61d1daec47d5563d1d78db',
-    messagingSenderId: '1078181417282',
-    projectId: 'profilepage-project',
-    storageBucket: 'profilepage-project.appspot.com',
-    iosClientId: '1078181417282-l71so0vr4ufi15lktgj4575vd0bnaa8l.apps.googleusercontent.com',
-    iosBundleId: 'com.example.profilePage.RunnerTests',
   );
 }
