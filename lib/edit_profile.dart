@@ -1,7 +1,15 @@
 // ignore_for_file: prefer_const_constructors
+import 'package:firebase_auth/firebase_auth.dart' // new
+    hide EmailAuthProvider, PhoneAuthProvider;    // new
+import 'package:flutter/material.dart';           // new
+import 'package:provider/provider.dart';          // new
+
+import 'app_state.dart';                          // new
+import 'src/authentication.dart';                 // new
+import 'src/widgets.dart';
 
 import 'dart:io';
-import 'package:flutter/material.dart';
+
 import 'package:image_picker/image_picker.dart';
 
 class EditProfile extends StatefulWidget {
@@ -298,7 +306,15 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                   ],
                 ),
+                Consumer<ApplicationState>(
+                  builder: (context, appState, _) => AuthFunc(
+                    loggedIn: appState.loggedIn,
+                    signOut: () {
+                      FirebaseAuth.instance.signOut();
+                }),
+          ),
               ],
+              
             ),
           )),
     );
