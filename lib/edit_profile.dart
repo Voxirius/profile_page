@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';          // new
 import 'app_state.dart';                          // new
 import 'src/authentication.dart';                 // new
 import 'src/widgets.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
@@ -19,8 +19,24 @@ class EditProfile extends StatefulWidget {
   State<EditProfile> createState() => _EditProfileState();
 }
 
+CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+Future<void> updateUser() {
+  return users
+    .set({
+      'name' : nameValue,
+      'nick' : nickValue,
+      'birth' : birthdateValue,
+      'gender' : genderValue,
+      'password' : passwordValue,
+      'vegetarian' : vegetarianValue,
+      'student' : studentValue,
+    });
+}
+
 class _EditProfileState extends State<EditProfile> {
   bool isObscurePassword = true;
+
 
   DateTime _dateTime = DateTime.now();                                    // _dateTime initialization
 
@@ -322,9 +338,17 @@ class _EditProfileState extends State<EditProfile> {
 
   Widget buildTextField(                                               // Builder for the text fields
       String labelText, String placeholder, bool isPasswordTextField) {
+    var _controller;
     return Padding(
       padding: EdgeInsets.only(bottom: 30),
       child: TextField(
+        controller: _controller,
+          onChanged: (String value) async {
+            if (value != null) {
+              var nameValue = value;
+              return;
+            }
+          },
         obscureText: isPasswordTextField ? isObscurePassword : false,
         decoration: InputDecoration(
           suffixIcon: isPasswordTextField
@@ -354,3 +378,5 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 }
+
+
