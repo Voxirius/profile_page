@@ -21,12 +21,25 @@ class EditProfile extends StatefulWidget {
 
 CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-Future<void> updateUser() {
-  return users
+
+Future<void> createUser(String nameValue,DateTime birthdateValue,String nickValue,String genderValue,String passwordValue,String vegetarianValue,String studentValue) {
+  return users.doc()
     .set({
       'name' : nameValue,
       'nick' : nickValue,
-      'birth' : birthdateValue,
+      'birth' : birthdateValue.toIso8601String(),
+      'gender' : genderValue,
+      'password' : passwordValue,
+      'vegetarian' : vegetarianValue,
+      'student' : studentValue,
+    });
+}
+Future<void> updateUser(String userId,String nameValue,DateTime birthdateValue,String nickValue,String genderValue,String passwordValue,String vegetarianValue,String studentValue) {
+  return users.doc(userId)
+    .set({
+      'name' : nameValue,
+      'nick' : nickValue,
+      'birth' : birthdateValue.toIso8601String(),
       'gender' : genderValue,
       'password' : passwordValue,
       'vegetarian' : vegetarianValue,
@@ -218,9 +231,9 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 SizedBox(height: 30),
                 buildTextField(                                       // Text field for full name
-                    "Full Name", "Enter or edit your name & surname", false),
+                    "Full Name", "Enter or edit your name & surname", false, nameController),
                 buildTextField(                                       // Text field for nickname
-                    "Nickname", "Enter or edit your nickname", false),
+                    "Nickname", "Enter or edit your nickname", false, nickController),
                     
 
                 MaterialButton(                                       // Date picker button for birth date
@@ -256,7 +269,7 @@ class _EditProfileState extends State<EditProfile> {
                   onChanged: dropdownCallBack1, 
                 ),
 
-                buildTextField("Password", "****", true),
+                buildTextField("Password", "****", true, passwordController),
 
                 DropdownButton(                                       // Dropdown menu for vegetarian or not
                   items: dropDownOptionsBoolean1.map<DropdownMenuItem<String>>((String mascot) {
@@ -336,13 +349,20 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
+  var nameController;
+  var nickController;
+  var birthdateController;
+  var genderController;
+  var passwordController;
+  var vegetarianController;
+  var studentController;
+
   Widget buildTextField(                                               // Builder for the text fields
-      String labelText, String placeholder, bool isPasswordTextField) {
-    var _controller;
+      String labelText, String placeholder, bool isPasswordTextField, TextEditingController controller) {
     return Padding(
       padding: EdgeInsets.only(bottom: 30),
       child: TextField(
-        controller: _controller,
+        controller: controller,
           onChanged: (String value) async {
             if (value != null) {
               var nameValue = value;
