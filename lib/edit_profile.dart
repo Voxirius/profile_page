@@ -317,7 +317,9 @@ class _EditProfileState extends State<EditProfile> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 15,),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          createUser(nameController.text,_dateTime,nickController.text,_dropdownGender,passwordController.text ,_dropdownBoolean1,_dropdownBoolean2);
+                        },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                             padding: EdgeInsets.symmetric(horizontal: 50),
@@ -349,13 +351,13 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  var nameController;
-  var nickController;
-  var birthdateController;
-  var genderController;
-  var passwordController;
-  var vegetarianController;
-  var studentController;
+  TextEditingController nameController = TextEditingController();  
+  TextEditingController nickController = TextEditingController();  
+  TextEditingController birthdateController = TextEditingController();  
+  TextEditingController genderController = TextEditingController();  
+  TextEditingController passwordController = TextEditingController();  
+  TextEditingController vegetarianController = TextEditingController();  
+  TextEditingController studentController = TextEditingController();
 
   Widget buildTextField(                                               // Builder for the text fields
       String labelText, String placeholder, bool isPasswordTextField, TextEditingController controller) {
